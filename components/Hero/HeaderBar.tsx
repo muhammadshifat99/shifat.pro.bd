@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/motion/theme-toggle";
 import { EmojiReaction } from "@/components/motion/emoji-reaction";
 import { Tooltip } from "@/components/motion/tooltip";
 import { useCoordinates } from "@/components/Hero/CoordinateTracker";
+import { content } from "@/lib/content";
 
 const CARD_W = 200;
 const CARD_HALF = CARD_W / 2;
@@ -82,7 +83,7 @@ export function HeaderBar() {
             href="/"
             className="relative z-10 text-sm font-medium tracking-tight"
           >
-            iamshakibali
+            {content.name}
           </a>
           <AnimatePresence>
             {logoHovered && (
@@ -105,8 +106,8 @@ export function HeaderBar() {
               >
                 <div className="h-[203px] w-[200px] shrink-0 overflow-hidden rounded-2xl border-8 border-white shadow-[0px_53px_79px_rgba(0,0,0,0.1)] dark:border-neutral-800">
                   <img
-                    src="/avatar.gif"
-                    alt="Shakib Ali"
+                    src="/avatar.png"
+                    alt={content.name}
                     width={200}
                     height={203}
                     className="h-full w-full rounded-xl object-cover"

@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { Dock, DockItem } from "@/components/motion/dock";
 import { WelcomeDoneContext } from "@/components/WelcomeDoneContext";
 
-// Phosphor icons (Shakib's picks) for the dock. Stroke weight 16 on a 256
+// Phosphor icons for the dock. Stroke weight 16 on a 256
 // viewBox is proportionally identical to the lucide icons' 1.5 on 24, so line
 // weights match; duotone shades use fill="currentColor" to theme in dark mode.
 function PhosphorGlyph({ strokeWidth: _strokeWidth, children, ...props }: SVGProps<SVGSVGElement>) {

@@ -5,7 +5,6 @@ import { AnimatePresence, motion, useMotionValue, useReducedMotion, useScroll, u
 import { GitHubHoverCard } from "@/components/Hero/GitHubHoverCard";
 import { XHoverCard } from "@/components/Hero/XHoverCard";
 import { LinkedInHoverCard } from "@/components/Hero/LinkedInHoverCard";
-import { LogoBadge } from "@/components/Hero/LogoBadge";
 import { WelcomeGate } from "@/components/WelcomeGate";
 import { useWelcomeDone } from "@/components/WelcomeDoneContext";
 import { Button, ButtonLink } from "@/components/motion/button";
@@ -18,9 +17,15 @@ import { ColophonSection } from "@/components/ColophonSection";
 import { LinksLine } from "@/components/LinksLine";
 import { SignatureGlyph } from "@/components/Signature";
 import { ProgressiveBlur } from "@/registry/magicui/progressive-blur";
+import { content } from "@/lib/content";
 
 const GH_CARD_W = 290;
 const GH_CARD_HALF = GH_CARD_W / 2;
+
+const SOCIAL = Object.fromEntries(content.socials.map((s) => [s.label, s.url])) as Record<
+  (typeof content.socials)[number]["label"],
+  string
+>;
 
 const FADE_UP = {
   hidden: { opacity: 0, y: 14, filter: "blur(6px)" },
@@ -33,9 +38,6 @@ function HeroContent() {
   const [pillOffset, setPillOffset] = useState(0);
   const [pillCardY, setPillCardY] = useState(0);
   const [mailCopied, setMailCopied] = useState(false);
-  const [logoHovered, setLogoHovered] = useState<string | null>(null);
-  // motion.p leaves inline filter:blur(0px) after FADE_UP, so blur text via inner spans, not the <p>
-  const blurCls = `transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`;
   const reduce = useReducedMotion() ?? false;
   // same bottom treatment as the work page: content rises above the fixed
   // blur/dock zone as the page scrolls
@@ -107,7 +109,7 @@ function HeroContent() {
           ref={sigRef}
           className="-ml-4 mb-6 h-24 w-auto shrink-0 self-start text-foreground"
           xmlns="http://www.w3.org/2000/svg"
-          aria-label="Shakib signature"
+          aria-label={`${content.name} wordmark`}
           style={{ x: sigSpringX, y: sigSpringY, rotate: sigSpringR }}
           initial={reduce ? false : { opacity: 0 }}
           animate={welcomeDone ? { opacity: 1 } : { opacity: 0 }}
@@ -117,7 +119,7 @@ function HeroContent() {
         </motion.svg>
 
         <p className="text-[22px] font-medium leading-none text-foreground" style={{ fontFamily: "var(--font-overused-grotesk)" }}>
-          <TextScramble text="Hi, I'm Shakib, Product Design Engineer." active={welcomeDone} />
+          <TextScramble text={`Hi, I'm ${content.name}, ${content.headline}.`} active={welcomeDone} />
         </p>
 
         <motion.p
@@ -127,7 +129,7 @@ function HeroContent() {
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
           className="mt-4 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
         >
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>Based in Bangladesh, working globally. I started with design, but my{"\n"}curiosity about how things work pulled me toward code.</span>
+          I build for the web — from clean interfaces to the automation{"\n"}behind them. Curiosity about how things work is what got me here.
         </motion.p>
 
         <motion.p
@@ -137,13 +139,7 @@ function HeroContent() {
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
           className="mt-6 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
         >
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>Currently, I&apos;m a Design Engineer at{" "}</span>
-          <LogoBadge id="vivetica" label="Vivetica" src="/badges/company-logo.svg" href="https://viveticacapital.ch" videoSrc="/badges/vivetica.mp4" width={290} imgClassName="dark:invert" active={logoHovered === "vivetica"} dimmed={logoHovered !== null && logoHovered !== "vivetica"} onHoverChange={setLogoHovered}>
-            <span className="inline-flex h-[21px] items-center justify-center rounded-full bg-[#f2f2f2] px-[10px] align-middle dark:bg-neutral-800">
-              <img src="/badges/company-logo.svg" alt="Vivetica" draggable={false} className="h-[13px] w-[74px] dark:invert" />
-            </span>
-          </LogoBadge>{" "}
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}> building{"\n"}design frameworks and systems.</span>
+          Currently I work mostly in TypeScript, React and Next.js, with{"\n"}a focus on AI engineering and workflow automation.
         </motion.p>
 
         <motion.p
@@ -153,34 +149,25 @@ function HeroContent() {
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.19 }}
           className="mt-4 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
         >
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>I worked a Sr Product Designer at{" "}</span>
-          <LogoBadge id="orbix" label="Orbix Studio" src="/badges/orbix.png" href="https://www.orbix.studio/" videoSrc="/badges/orbix.mp4" width={290} active={logoHovered === "orbix"} dimmed={logoHovered !== null && logoHovered !== "orbix"} onHoverChange={setLogoHovered}>
-            <span className="whitespace-nowrap">
-              <span className="mx-[1px] inline-block size-[21px] align-middle">
-                <img src="/badges/orbix.png" alt="Orbix Studio" draggable={false} className="size-full rounded-full object-cover" />
-              </span>{" "}
-              <span className="font-medium text-black dark:text-white">Orbix Studio</span>
-            </span>
-          </LogoBadge>{" "}
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>&amp;{" "}</span>
-          <LogoBadge id="screens" label="ScreensDesign" src="/badges/screens.png" href="https://screensdesign.com" videoSrc="/badges/screens.mp4" width={290} active={logoHovered === "screens"} dimmed={logoHovered !== null && logoHovered !== "screens"} onHoverChange={setLogoHovered}>
-            <span className="whitespace-nowrap">
-              <span className="mx-[1px] inline-block size-[21px] align-middle">
-                <img src="/badges/screens.png" alt="ScreensDesign" draggable={false} className="size-full rounded-full object-cover" />
-              </span>{" "}
-              <span className="font-medium text-black dark:text-white">ScreensDesign</span>
-            </span>
-          </LogoBadge>
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>{"\n"}Outside of work, I build and open-source apps like{" "}</span>
-          <LogoBadge id="pintop" label="Pintop" src="/badges/pintop.png" href="https://github.com/iamshakibali/pin-top" popup={false} active={logoHovered === "pintop"} dimmed={logoHovered !== null && logoHovered !== "pintop"} onHoverChange={setLogoHovered}>
-            <span className="whitespace-nowrap">
-              <span className="mx-[1px] inline-block h-[21px] w-[21px] align-middle">
-                <img src="/badges/pintop.png" alt="Pintop" draggable={false} className="size-full object-contain" />
-              </span>{" "}
-              <span className="font-medium text-black dark:text-white">Pintop</span>
-            </span>
-          </LogoBadge>
-          <span className={`transition-[filter] duration-300 ${logoHovered ? "blur-[8px]" : ""}`}>, and{"\n"}love contributing to open-source projects.</span>
+          Outside of work, I open-source small projects like{" "}
+          <a
+            href={content.projects[0].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
+          >
+            {content.projects[0].name}
+          </a>{" "}
+          and{" "}
+          <a
+            href={content.projects[1].url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
+          >
+            {content.projects[1].name}
+          </a>
+          , and{"\n"}love contributing to open-source projects.
         </motion.p>
 
         <div ref={pillRowRef} className="relative mt-8">
@@ -200,7 +187,7 @@ function HeroContent() {
               style={{ borderRadius: "13.5px" }}
               onClick={async () => {
                 try {
-                  await navigator.clipboard.writeText("shakibaliuix@proton.me");
+                  await navigator.clipboard.writeText(content.email);
                 } catch {}
                 setMailCopied(true);
                 setTimeout(() => setMailCopied(false), 1400);
@@ -245,7 +232,7 @@ function HeroContent() {
                   </ActionSwapIcon>
                 </span>
               </span>
-              <ActionSwapCascadeText value={mailCopied ? "Copied!" : "shakibaliuix@proton.me"} />
+              <ActionSwapCascadeText value={mailCopied ? "Copied!" : content.email} />
             </Button>
           </div>
           <motion.div
@@ -260,7 +247,7 @@ function HeroContent() {
             <ButtonLink
               variant="pill"
               size="pill"
-              href="https://x.com/iamshakibali"
+              href={SOCIAL.X}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -292,7 +279,7 @@ function HeroContent() {
             <ButtonLink
               variant="pill"
               size="pill"
-              href="https://github.com/iamshakibali"
+              href={SOCIAL.GitHub}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -324,7 +311,7 @@ function HeroContent() {
             <ButtonLink
               variant="pill"
               size="pill"
-              href="https://linkedin.com/in/iamshakibali"
+              href={SOCIAL.LinkedIn}
               target="_blank"
               rel="noopener noreferrer"
             >

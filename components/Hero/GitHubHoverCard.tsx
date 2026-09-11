@@ -1,32 +1,10 @@
 "use client";
 
-import { NumberTicker } from "@/components/motion/number";
+import { content } from "@/lib/content";
 
-const GAP = 3;
-const COLS = 24;
-// hero-sized cells — fills the 290px card's 258px content width (16px padding)
-const CELL = (290 - 32 - (COLS - 1) * GAP) / COLS;
-
-// same level palette as the hero graph (components/ContributionGraph.tsx)
-const LEVEL_BG = [
-  "bg-neutral-200 dark:bg-[#181818]",
-  "bg-neutral-300 dark:bg-[#333]",
-  "bg-neutral-400 dark:bg-[#666]",
-  "bg-neutral-500 dark:bg-[#adadad]",
-  "bg-neutral-900 dark:bg-white",
-];
-
-// hero palette; density weighted to visible levels 1–2 so the grid reads as a
-// textured field (level 0 is invisible on the zinc-900 card in dark mode)
-const GRID: string[] = [
-  "1 0 1 2 1 0 2 1 0 1 2 1 0 2 1 0 3 1 0 2 1 0 1 2",
-  "2 1 0 1 2 1 3 0 2 1 0 2 1 0 1 2 4 0 1 2 1 0 2 1",
-  "1 2 1 0 1 2 0 1 2 3 1 0 2 1 0 1 4 2 0 1 2 1 0 1",
-  "0 1 2 1 3 0 1 2 1 0 2 1 3 0 1 2 4 1 0 2 1 3 0 2",
-  "1 0 1 2 0 1 2 1 0 3 1 2 0 1 2 1 3 0 2 1 0 1 2 0",
-  "2 1 3 0 1 2 1 0 2 1 0 1 2 3 0 1 4 2 1 0 1 2 0 1",
-  "0 2 1 0 2 1 0 1 1 2 1 0 1 0 2 1 0 1 2 1 0 2 1 0",
-];
+// snapshot of the profile at time of writing — refresh on big changes
+const PUBLIC_REPOS = 20;
+const FOLLOWERS = 6;
 
 export function GitHubHoverCard() {
   return (
@@ -47,24 +25,19 @@ export function GitHubHoverCard() {
             />
           </svg>
         </span>
-        <p className="text-[12.8px] leading-[19.2px] tracking-[-0.256px] whitespace-nowrap">
-          <span className="font-semibold text-[#262626] dark:text-zinc-100"><NumberTicker value={250} suffix="+" className="align-middle" /></span>
-          <span className="font-normal text-[#737373] dark:text-zinc-400"> contributions in 2026</span>
+        <p className="text-[12.8px] leading-[19.2px] tracking-[-0.256px] whitespace-nowrap font-semibold text-[#262626] dark:text-zinc-100">
+          {content.username}
         </p>
       </div>
-      <div
-        className="grid w-full pt-3"
-        style={{ gridTemplateColumns: `repeat(${COLS}, ${CELL}px)`, gap: GAP }}
-      >
-        {GRID.flatMap((row, ri) =>
-          row.split(/\s+/).filter(Boolean).map((level, i) => (
-            <div
-              key={`${ri}-${i}`}
-              className={`rounded-[2px] ${LEVEL_BG[Number(level)]}`}
-              style={{ width: CELL, height: CELL }}
-            />
-          )),
-        )}
+      <div className="flex w-full flex-col gap-[6px] pt-3 font-mono text-[12px] leading-[16px] text-[#737373] dark:text-zinc-400">
+        <p>
+          <span className="font-semibold text-[#262626] dark:text-zinc-100">{PUBLIC_REPOS}</span>{" "}
+          public repositories
+        </p>
+        <p>
+          <span className="font-semibold text-[#262626] dark:text-zinc-100">{FOLLOWERS}</span>{" "}
+          followers
+        </p>
       </div>
     </div>
   );

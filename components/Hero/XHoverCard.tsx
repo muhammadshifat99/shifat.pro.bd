@@ -1,8 +1,14 @@
 "use client";
 
-import { NumberTicker } from "@/components/motion/number";
+import { content } from "@/lib/content";
 
 export function XHoverCard() {
+  const handle = content.socials
+    .find((s) => s.label === "X")!
+    .url.split("/")
+    .filter(Boolean)
+    .pop();
+
   return (
     <div className="flex h-[143px] w-full flex-col items-start">
       {/* Header: avatar + Follow pill */}
@@ -10,8 +16,8 @@ export function XHoverCard() {
         <div className="size-[64px] shrink-0 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/x-avatar.png"
-            alt="Shakib Ali"
+            src="/avatar.png"
+            alt={content.name}
             width={64}
             height={64}
             draggable={false}
@@ -31,7 +37,7 @@ export function XHoverCard() {
           className="shrink-0 text-[17.6px] font-medium leading-[17.6px] tracking-[-0.8766px] text-[#171717] dark:text-zinc-100"
           style={{ fontFamily: "var(--font-overused-grotesk)" }}
         >
-          Shakib
+          {content.name}
         </p>
         <span className="size-[16px] shrink-0">
           <svg viewBox="0 0 13.6669 13.6669" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-full" aria-hidden>
@@ -43,19 +49,7 @@ export function XHoverCard() {
       {/* Handle */}
       <div className="w-full pt-[4px]">
         <p className="whitespace-nowrap text-[14.4px] font-normal leading-[14.4px] tracking-[-0.288px] text-[#737373] dark:text-zinc-400">
-          @iamshakibali
-        </p>
-      </div>
-
-      {/* Stats */}
-      <div className="flex w-full gap-6 pt-[16px]">
-        <p className="whitespace-nowrap text-[14.4px] leading-[14.4px] tracking-[-0.288px]">
-          <span className="font-semibold text-[#171717] dark:text-zinc-100"><NumberTicker value={220} className="align-middle" /></span>
-          <span className="font-normal text-[#737373] dark:text-zinc-400"> Following</span>
-        </p>
-        <p className="whitespace-nowrap text-[14.4px] leading-[14.4px] tracking-[-0.288px]">
-          <span className="font-semibold text-[#171717] dark:text-zinc-100"><NumberTicker value={72} className="align-middle" /></span>
-          <span className="font-normal text-[#737373] dark:text-zinc-400"> Followers</span>
+          @{handle}
         </p>
       </div>
     </div>

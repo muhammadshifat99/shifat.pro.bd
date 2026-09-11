@@ -1,14 +1,20 @@
 "use client";
 
-import { NumberTicker } from "@/components/motion/number";
+import { content } from "@/lib/content";
 
 export function LinkedInHoverCard() {
+  const handle = content.socials
+    .find((s) => s.label === "LinkedIn")!
+    .url.split("/")
+    .filter(Boolean)
+    .pop();
+
   return (
     <div className="flex h-[143px] w-full flex-col items-start">
       <div className="flex w-full items-start justify-between">
         <div className="size-[64px] shrink-0 overflow-hidden rounded-[300px] bg-zinc-100 dark:bg-zinc-800">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/linkedin-avatar.png" alt="Shakib Ali" width={64} height={64} draggable={false} className="size-full object-cover" />
+          <img src="/avatar.png" alt={content.name} width={64} height={64} draggable={false} className="size-full object-cover" />
         </div>
         <div className="shrink-0 rounded-full bg-[#0a66c2] px-[16px] py-[10px]">
           <p className="whitespace-nowrap text-[14.4px] font-semibold leading-[14.4px] tracking-[-0.288px] text-white">Follow</p>
@@ -16,7 +22,7 @@ export function LinkedInHoverCard() {
       </div>
       <div className="flex w-full items-center gap-[6px] pt-[12px]">
         <p className="shrink-0 text-[17.6px] font-medium leading-[17.6px] tracking-[-0.8766px] text-[#171717] dark:text-zinc-100" style={{ fontFamily: "var(--font-overused-grotesk)" }}>
-          Shakib
+          {content.name}
         </p>
         <span className="size-[16px] shrink-0 text-black/75 dark:text-white">
           <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="size-full" aria-hidden>
@@ -25,17 +31,7 @@ export function LinkedInHoverCard() {
         </span>
       </div>
       <div className="w-full pt-[4px]">
-        <p className="whitespace-nowrap text-[14.4px] font-normal leading-[14.4px] tracking-[-0.288px] text-[#737373] dark:text-zinc-400">@iamshakibali</p>
-      </div>
-      <div className="flex w-full gap-6 pt-[16px]">
-        <p className="whitespace-nowrap text-[14.4px] leading-[14.4px] tracking-[-0.288px]">
-          <span className="font-semibold text-[#0a66c2] dark:text-[#70b5ff]"><NumberTicker value={844} className="align-middle" /></span>
-          <span className="font-normal text-[#0a66c2] dark:text-[#70b5ff]"> Followers</span>
-        </p>
-        <p className="whitespace-nowrap text-[14.4px] leading-[14.4px] tracking-[-0.288px]">
-          <span className="font-semibold text-[#0a66c2] dark:text-[#70b5ff]"><NumberTicker value={500} suffix="+" className="align-middle" /></span>
-          <span className="font-normal text-[#0a66c2] dark:text-[#70b5ff]"> Connection</span>
-        </p>
+        <p className="whitespace-nowrap text-[14.4px] font-normal leading-[14.4px] tracking-[-0.288px] text-[#737373] dark:text-zinc-400">@{handle}</p>
       </div>
     </div>
   );

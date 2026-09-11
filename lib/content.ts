@@ -1,115 +1,50 @@
-// All personal content lives here. Swap the placeholders for real values
-// later — nothing personal is hardcoded in the components.
+// All personal content lives here — sourced from the GitHub profile
+// github.com/muhammadshifat99. Nothing personal is hardcoded in components.
+
+export type ExperienceEntry = {
+  company: string;
+  icon: "code" | "pen";
+  url: string;
+  logo: string;
+  logoInvert: boolean;
+  location: string;
+  locationNote: string | null;
+  role: string;
+  type: string;
+  start: string;
+  end: string | null;
+  duration: string | null;
+  highlights: string[];
+  tags: string[];
+};
+
 export const content = {
-  name: "imahskaibali",
-  headline: "Product Designer & Design Engineer",
-  subtext: "I design and build digital products end to end.",
-  email: "hello@imahskaibali.com",
-  resumeUrl: "https://drive.google.com/file/d/1xPchJJRMhTQe21jW2U7mDiCiPBWgVExV/view",
+  name: "Muhammad Shifat",
+  username: "muhammadshifat99",
+  headline: "Web Developer",
+  subtext: "I build for the web and automate with AI.",
+  email: "muhammadshifat@yahoo.com",
+  domain: "shifat.pro.bd",
   socials: [
-    { label: "Claude", url: "https://claude.ai/new?q=Who%20is%20iamshakibali%3F%20Search%20the%20web%20and%20give%20a%20summary%20of%20who%20they%20are%2C%20their%20work%2C%20and%20their%20website%20iamshakibali.pro.bd" },
-    { label: "YouTube", url: "https://youtube.com/@iamshakibali" },
-    { label: "ChatGPT", url: "https://chatgpt.com/?q=Who%20is%20iamshakibali%3F%20Search%20the%20web%20and%20give%20a%20summary%20of%20who%20they%20are%2C%20their%20work%2C%20and%20their%20website%20iamshakibali.pro.bd" },
+    { label: "GitHub", url: "https://github.com/muhammadshifat99" },
+    { label: "X", url: "https://x.com/ShifatNPC" },
+    { label: "LinkedIn", url: "https://linkedin.com/in/muhammadshifat99" },
   ],
-  experience: [
-    {
-      company: "Vivetica AG",
-      icon: "code",
-      url: "https://viveticacapital.ch",
-      logo: "/badges/vivetica-mark.svg",
-      logoInvert: true,
-      location: "Zürich, Switzerland",
-      locationNote: "(Remote)",
-      role: "Product Design Engineer",
-      type: "Part-time",
-      start: "01.2026",
-      end: null, // present
-      duration: "8m",
-      highlights: [
-        "Design and build reusable Pro components and UI blocks, translating Figma designs into production-ready React code used across the firm’s advisory and investment platforms.",
-        "Create and maintain a scalable design system that ensures visual and functional consistency across products tied to infrastructure and energy transition initiatives.",
-        "Develop and ship production-ready frontend interfaces, working closely with backend teams for smooth integration and handoff.",
-        "Design and build marketing websites for the firm, translating complex infrastructure and energy propositions into clear, high-impact visuals.",
-      ],
-      tags: ["React", "TypeScript", "Next.js", "Design System", "Figma", "UX"],
-    },
-    {
-      company: "Orbix Studio",
-      icon: "pen",
-      url: "https://www.orbix.studio/",
-      logo: "/badges/orbix.png",
-      logoInvert: false,
-      location: "Mirpur, Dhaka",
-      locationNote: "(On Site)",
-      role: "Sr. Product Designer",
-      type: "Full Time",
-      start: "Jul 2025",
-      end: "Aug 2025",
-      duration: "1m",
-      highlights: [
-        "Led the design and research team to improve the studio’s portfolio and overall design quality.",
-        "Worked on client projects, delivering high-quality UI/UX designs across multiple product areas.",
-        "Helped organize design workflows and mentored junior designers on process and craft.",
-      ],
-      tags: ["Creativity", "UI/UX Design", "Figma"],
-    },
-    {
-      company: "ScreensDesigns",
-      icon: "pen",
-      url: "https://screensdesign.com",
-      logo: "/badges/screens.png",
-      logoInvert: false,
-      location: "Tallinn, Estonia",
-      locationNote: "(Remote)",
-      role: "Product Designer",
-      type: "Contract",
-      start: "Feb 2024",
-      end: "Nov 2025",
-      duration: "21m",
-      highlights: [
-        "Designed the full website for ScreensDesign, a UI/UX inspiration platform used by designers and product teams to discover proven app design patterns.",
-        "Worked closely with the CEO and development team to translate business goals into clear, user-friendly designs.",
-        "Contributed to internal design work beyond the website, supporting the product with additional UI/UX needs as they came up.",
-      ],
-      tags: ["Web Design", "UI/UX Design", "UX Research", "Figma"],
-    },
-    {
-      company: "Hashtagfox Ou",
-      icon: "pen",
-      url: "https://www.inforegister.ee/en/14839166-HASHTAGFOX-OU/",
-      logo: "/badges/hashtagfox.png",
-      logoInvert: false,
-      location: "Tallinn, Estonia",
-      locationNote: "(Remote)",
-      role: "Product Designer",
-      type: "Contract",
-      start: "Feb 2023",
-      end: "Mar 2025",
-      duration: "25m",
-      highlights: [
-        "Added new features and UX enhancements to [[Boost App Social|https://apps.apple.com/us/app/boost-app-social/id1551991915]], doubling revenue.",
-        "Revamped the [[Brainbubble app|https://apps.apple.com/us/app/brainbubble-ace-your-job/id1664489026]] to improve UX, boosting user conversions and retention.",
-        "Designed the [[BoostVibe app|https://apps.apple.com/in/app/boostvibe-aesthetic-reels/id6451412109]], focusing on user engagement and strong visual appeal.",
-        "Created a SaaS platform for machine operations, improving UX and driving measurable business growth.",
-        "Designed an AI-powered iOS photo editing app with innovative, user-focused features.",
-      ],
-      tags: ["App Design", "SaaS", "UX", "Figma", "HTML", "CSS"],
-    },
-  ],
+  experience: [] as ExperienceEntry[],
   projects: [
     {
-      name: "Vivetica",
-      description: "Infrastructure and growth in\nEurope. — Design & Frontend",
-      image: "/projects/vivetica.png",
-      url: "https://vivetica.vercel.app/",
+      name: "Tuktak",
+      description: "Business site for Tuktak Tech.\n— HTML & CSS",
+      image: "/projects/placeholder.png",
+      url: "https://tuktakteck.vercel.app",
       note: null,
     },
     {
-      name: "VisualPillar",
-      description: "Full Cycle design agency in BD\n— Design & Frontend",
+      name: "Calculator",
+      description: "A simple calculator using\nHTML, CSS and JavaScript.",
       image: "/projects/placeholder.png",
-      url: "#",
-      note: "In Development",
+      url: "https://html-css-js-calulator.vercel.app",
+      note: null,
     },
   ],
   skills: [
@@ -119,8 +54,8 @@ export const content = {
       items: [
         { name: "HTML", icon: "html" },
         { name: "CSS", icon: "css" },
-        { name: "TypeScript", icon: "typescript" },
         { name: "JavaScript", icon: "javascript" },
+        { name: "TypeScript", icon: "typescript" },
       ],
     },
     {
@@ -130,7 +65,6 @@ export const content = {
         { name: "React", icon: "react" },
         { name: "Next.js", icon: "nextjs" },
         { name: "Tailwind CSS", icon: "tailwind" },
-        { name: "shadcn/ui", icon: "shadcn" },
         { name: "Radix UI", icon: "radix" },
         { name: "Base UI", icon: "baseui" },
         { name: "Motion", icon: "motion" },
@@ -157,7 +91,6 @@ export const content = {
       name: "Design",
       items: [
         { name: "Figma", icon: "figma" },
-        { name: "Paper", icon: "paper" },
         { name: "Photoshop", icon: "photoshop" },
       ],
     },
@@ -165,21 +98,33 @@ export const content = {
   archive: [
     {
       year: "2026",
-      name: "TRH CGI",
-      description: "Portfolio for a Paris CGI studio.",
-      url: "https://github.com/iamshakibali/thr-cgi-c",
+      name: "HBL Beta",
+      description: "TypeScript project.",
+      url: "https://github.com/muhammadshifat99/HBL-Beta",
     },
     {
-      year: "2026",
-      name: "Pintop",
-      description: "Pin any window always-on-top on macOS.",
-      url: "https://github.com/iamshakibali/pin-top",
+      year: "2025",
+      name: "Onek Din Por",
+      description: "HTML project.",
+      url: "https://github.com/muhammadshifat99/onek-din-por",
     },
     {
-      year: "2026",
-      name: "Vucko",
-      description: "Creative agency site built around motion.",
-      url: "https://github.com/iamshakibali/Vucko",
+      year: "2025",
+      name: "Tanjir's Site",
+      description: "HTML site build.",
+      url: "https://github.com/muhammadshifat99/tanjirs-site",
+    },
+    {
+      year: "2024",
+      name: "3D Globe",
+      description: "Interactive 3D globe in JavaScript.",
+      url: "https://github.com/muhammadshifat99/3D-GLOBE",
+    },
+    {
+      year: "2024",
+      name: "Good Nap",
+      description: "HTML project.",
+      url: "https://github.com/muhammadshifat99/Good-Nap",
     },
   ],
 } as const;

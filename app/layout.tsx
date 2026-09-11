@@ -26,7 +26,7 @@ const overusedGrotesk = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Iamshakibali | Design Engineer",
+  title: `${content.name} | ${content.headline}`,
   description: content.subtext,
   icons: {
     icon: [
@@ -42,13 +42,8 @@ export default function RootLayout({
   // Hero images as head preloads: the welcome gate hides content with
   // visibility:hidden (loads start but unprioritized), so on a cold cache
   // images could still be fetching when the loader lifts and pop in late.
-  preload("/avatar.gif", { as: "image" });
-  preload("/badges/company-logo.svg", { as: "image" });
-  preload("/badges/orbix.png", { as: "image" });
-  preload("/badges/screens.png", { as: "image" });
-  preload("/badges/pintop.png", { as: "image" });
-  preload("/x-avatar.png", { as: "image" });
-  preload("/linkedin-avatar.png", { as: "image" });
+  preload("/avatar.png", { as: "image" });
+  preload("/projects/placeholder.png", { as: "image" });
 
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${overusedGrotesk.variable}`}>

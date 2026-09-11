@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NumberTicker } from "@/components/motion/number";
 import { useWelcomeDone } from "@/components/WelcomeDoneContext";
+import { content } from "@/lib/content";
 
 // month labels for the x-axis — approximate guide; the real data span is close
 const MONTHS = [
@@ -55,7 +56,7 @@ export function ContributionGraph() {
   // fetch real GitHub contributions via the public API and group by
 // Sun–Sat weeks so the visual pattern matches the real graph exactly
   useEffect(() => {
-    fetch("https://github-contributions-api.jogruber.de/v4/iamshakibali")
+    fetch(`https://github-contributions-api.jogruber.de/v4/${content.username}`)
       .then((r) => r.json())
       .then((json) => {
         const groups: { count: number; label: string }[][] = [];
