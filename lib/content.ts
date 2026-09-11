@@ -21,7 +21,8 @@ export type ExperienceEntry = {
 export const content = {
   name: "Muhammad Shifat",
   username: "muhammadshifat99",
-  headline: "Web Developer",
+  headline: "Tech Enthusiast",
+  headlineFull: "Full-Stack Technology Enthusiast",
   subtext: "I build for the web and automate with AI.",
   email: "muhammadshifat@yahoo.com",
   domain: "shifat.pro.bd",

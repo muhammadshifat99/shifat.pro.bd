@@ -5,6 +5,7 @@ All notable changes to [shifat.pro.bd](https://shifat.pro.bd/) — Muhammad Shif
 ## 2026-09-10
 
 ### Rebrand
+- Title changed to **Tech Enthusiast** (full form **Full-Stack Technology Enthusiast**)
 - Replaced all placeholder content with real profile data from [github.com/muhammadshifat99](https://github.com/muhammadshifat99)
 - Name, headline, email, socials, skills, projects, and archive now live in `lib/content.ts`; nothing personal is hardcoded in components
 - Handwritten signature SVG replaced with a **text wordmark** in the loader and hero

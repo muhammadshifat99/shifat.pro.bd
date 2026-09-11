@@ -88,7 +88,7 @@ export function ColophonSection() {
     <section className="w-full">
       <div className="flex items-baseline justify-between gap-4 text-[14px] leading-[20px]">
         <span className="font-mono font-medium text-foreground">{content.domain}</span>
-        <span className="text-right text-[10px] text-neutral-500 dark:text-neutral-400">{content.headline}.</span>
+        <span className="text-right text-[10px] text-neutral-500 dark:text-neutral-400">{content.headlineFull}.</span>
       </div>
 
       {/* dashed hairline grid: container draws top/left, each cell its own

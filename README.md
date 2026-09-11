@@ -1,6 +1,6 @@
 # Muhammad Shifat
 
-**Web Developer** — I build for the web and automate with AI.
+**Full-Stack Technology Enthusiast** — I build for the web and automate with AI.
 
 🌐 **[shifat.pro.bd](https://shifat.pro.bd)**
 
@@ -8,7 +8,7 @@
 
 ## About
 
-I'm Shifat — a web developer working mostly in TypeScript, React and Next.js, with a focus on AI engineering and workflow automation.
+I'm Shifat — a full-stack technology enthusiast working mostly in TypeScript, React and Next.js, with a focus on AI engineering and workflow automation.
 
 ## This Site
 
