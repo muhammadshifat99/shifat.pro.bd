@@ -29,6 +29,8 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
+          exclude:
+            - ./out/dev/**
 
   deploy:
     if: github.event_name != 'pull_request'

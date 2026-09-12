@@ -20,7 +20,7 @@ export function ProjectsSection() {
               src={project.image}
               alt={`${project.name} preview`}
               draggable={false}
-              className="block aspect-video w-full object-cover"
+              className="block aspect-video w-full object-cover object-top"
             />
             <div className="flex items-center gap-2 px-3 pt-2.5">
               <span className="text-[14px] font-medium text-black dark:text-white">

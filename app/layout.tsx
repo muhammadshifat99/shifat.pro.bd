@@ -44,6 +44,10 @@ export default function RootLayout({
   // images could still be fetching when the loader lifts and pop in late.
   preload("/avatar.png", { as: "image" });
   preload("/projects/placeholder.png", { as: "image" });
+  // Both signature variants: the welcome loader animates one in ~1.5s after
+  // load, before the theme-hidden variant would otherwise be fetched.
+  preload("/hero-signeture-black.png", { as: "image" });
+  preload("/hero-signeture-white.png", { as: "image" });
 
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} ${overusedGrotesk.variable}`}>

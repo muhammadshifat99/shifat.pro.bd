@@ -8,7 +8,7 @@ import { content } from "@/lib/content";
 // month labels for the x-axis — approximate guide; the real data span is close
 const MONTHS = [
   { label: "Sep", week: 0 },
-  { label: "Oct", week: 5 },
+  { label: "Oct", week: 4 },
   { label: "Nov", week: 9 },
   { label: "Dec", week: 13 },
   { label: "Jan", week: 18 },
@@ -17,6 +17,8 @@ const MONTHS = [
   { label: "Apr", week: 31 },
   { label: "May", week: 35 },
   { label: "Jun", week: 39 },
+  { label: "Jul", week: 44 },
+  { label: "Aug", week: 48 },
 ];
 
 // GitHub's quartile colour bands (0 = none, 1–3 = low, 4–8 = mid,
@@ -30,7 +32,7 @@ const LEVEL_BG = [
 ];
 
 const GAP = 3;
-const WEEKS = 41; // 10px cells: 41 weeks × 13px = 530px — the most that fits the 540px column
+const WEEKS = 51; // 10px cells: 51 weeks × 13px = 660px — the most that fits the 672px column
 const CELL = 10;
 const PITCH = CELL + GAP;
 
@@ -53,22 +55,49 @@ export function ContributionGraph() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<{ count: number; label: string } | null>(null);
 
-  // fetch real GitHub contributions via the public API and group by
-// Sun–Sat weeks so the visual pattern matches the real graph exactly
+  // Contributions are spread across several GitHub accounts (side projects
+  // and orgs I contribute to), so no single graph reflects real activity.
+  // Fetch every account's rolling year (`?y=last` = last 365 days ending
+  // today, matching GitHub's own view) in parallel and sum the counts per
+  // day into one merged graph, grouped Sun–Sat like the real graph.
   useEffect(() => {
-    fetch(`https://github-contributions-api.jogruber.de/v4/${content.username}`)
-      .then((r) => r.json())
-      .then((json) => {
+    Promise.allSettled(
+      content.contributionAccounts.map((user) =>
+        fetch(
+          `https://github-contributions-api.jogruber.de/v4/${user}?y=last`,
+        ).then((r) => {
+          if (!r.ok) throw new Error(`${user}: ${r.status}`);
+          return r.json();
+        }),
+      ),
+    )
+      .then((results) => {
+        // sum every responding account's daily counts, keyed by date; a
+        // 404 (deleted/renamed account) just contributes nothing
+        const byDate = new Map<string, number>();
+        let responded = 0;
+        for (const res of results) {
+          if (res.status !== "fulfilled") continue;
+          const days = res.value?.contributions;
+          if (!Array.isArray(days)) continue;
+          responded++;
+          for (const day of days) {
+            byDate.set(day.date, (byDate.get(day.date) ?? 0) + day.count);
+          }
+        }
+        if (responded === 0) throw new Error("no accounts responded");
+
+        // walk the merged days in date order, grouping into Sun–Sat weeks
         const groups: { count: number; label: string }[][] = [];
         let week: { count: number; label: string }[] = [];
-        for (const entry of json.contributions) {
-          const date = new Date(entry.date);
+        for (const dateStr of [...byDate.keys()].sort()) {
+          const date = new Date(dateStr);
           if (date.getDay() === 0 && week.length > 0) {
             groups.push(week);
             week = [];
           }
           week.push({
-            count: entry.count,
+            count: byDate.get(dateStr)!,
             label: date.toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
@@ -91,10 +120,8 @@ export function ContributionGraph() {
             months.push({ label: m, week: wi });
           }
         });
-        const total = json.contributions.reduce(
-          (s: number, c: any) => s + c.count,
-          0,
-        );
+        let total = 0;
+        for (const c of byDate.values()) total += c;
         setData({ weeks, months, total });
         setLoading(false);
       })

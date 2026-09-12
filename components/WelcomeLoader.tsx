@@ -6,7 +6,7 @@ import { EASE_OUT } from "@/lib/ease";
 import { SignatureGlyph } from "@/components/Signature";
 import { content } from "@/lib/content";
 
-const HELLOS = ["Hello", "Bonjour", "স্বাগতম", "你好", "こんにちは"];
+const HELLOS = ["Hello", "مرحبا", "স্বাগতম", "你好", "آداب"];
 
 type Phase = "words" | "signature" | "moving";
 

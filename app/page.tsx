@@ -14,7 +14,7 @@ import { ContributionGraph } from "@/components/ContributionGraph";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { ArchiveSection } from "@/components/ArchiveSection";
 import { ColophonSection } from "@/components/ColophonSection";
-import { LinksLine } from "@/components/LinksLine";
+import { AskAI } from "@/components/AskAI";
 import { SignatureGlyph } from "@/components/Signature";
 import { ProgressiveBlur } from "@/registry/magicui/progressive-blur";
 import { content } from "@/lib/content";
@@ -102,7 +102,7 @@ function HeroContent() {
       onMouseMove={handleSigMagnetic}
     >
       <motion.div className="flex flex-1 flex-col items-center justify-start px-6 pt-16" style={{ paddingBottom: pb }}>
-        <div className="flex w-full max-w-[540px] flex-col items-start text-left">
+        <div className="flex w-full max-w-[672px] flex-col items-start text-left">
         <motion.svg
           viewBox="0 0 1920 1080"
           id="hero-signature"
@@ -127,29 +127,9 @@ function HeroContent() {
           initial={reduce ? false : "hidden"}
           animate={welcomeDone ? "visible" : "hidden"}
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
-          className="mt-4 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
+          className="mt-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
         >
-          I build for the web — from clean interfaces to the automation{"\n"}behind them. Curiosity about how things work is what got me here.
-        </motion.p>
-
-        <motion.p
-          variants={FADE_UP}
-          initial={reduce ? false : "hidden"}
-          animate={welcomeDone ? "visible" : "hidden"}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
-          className="mt-6 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
-        >
-          Currently I work mostly in TypeScript, React and Next.js, with{"\n"}a focus on AI engineering and workflow automation.
-        </motion.p>
-
-        <motion.p
-          variants={FADE_UP}
-          initial={reduce ? false : "hidden"}
-          animate={welcomeDone ? "visible" : "hidden"}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.19 }}
-          className="mt-4 whitespace-pre-line max-w-[540px] text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
-        >
-          Outside of work, I open-source small projects like{" "}
+          I&apos;m the Chief Marketing Officer at{" "}
           <a
             href={content.projects[0].url}
             target="_blank"
@@ -157,17 +137,28 @@ function HeroContent() {
             className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
           >
             {content.projects[0].name}
-          </a>{" "}
-          and{" "}
-          <a
-            href={content.projects[1].url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
-          >
-            {content.projects[1].name}
           </a>
-          , and{"\n"}love contributing to open-source projects.
+          , an AI automation startup. I own brand, content, and demand generation, and build the acquisition engine that turns attention into customers.
+        </motion.p>
+
+        <motion.p
+          variants={FADE_UP}
+          initial={reduce ? false : "hidden"}
+          animate={welcomeDone ? "visible" : "hidden"}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
+          className="mt-6 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
+        >
+          My edge is technical. I work mostly in TypeScript, React, and Next.js, with a focus on AI engineering and workflow automation, so I market what I understand deeply.
+        </motion.p>
+
+        <motion.p
+          variants={FADE_UP}
+          initial={reduce ? false : "hidden"}
+          animate={welcomeDone ? "visible" : "hidden"}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.19 }}
+          className="mt-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
+        >
+          Outside of work, I love contributing to open source.
         </motion.p>
 
         <div ref={pillRowRef} className="relative mt-8">
@@ -315,7 +306,7 @@ function HeroContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Linkedin
+              LinkedIn
               <span className="flex pl-[6px]">
                 <span className="size-[15px] shrink-0 text-[#171717] dark:text-white">
                   <svg
@@ -400,7 +391,7 @@ function HeroContent() {
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.54 }}
           className="mt-14 w-full"
         >
-          <LinksLine />
+          <AskAI />
         </motion.div>
 
         <motion.div

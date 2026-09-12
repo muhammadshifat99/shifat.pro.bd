@@ -68,7 +68,7 @@ export default function WorkPage() {
   className="relative flex w-full flex-1 flex-col items-center justify-start px-6 pt-16"
   style={{ paddingBottom: pb }}
 >
-        <div className="flex w-full max-w-[540px] flex-col gap-[25px]">
+        <div className="flex w-full max-w-[672px] flex-col gap-[25px]">
         {/* Heading — hero greeting treatment, bumped a size; fades up + unblurs
             on mount, so it plays when arriving via the dock */}
         <motion.p

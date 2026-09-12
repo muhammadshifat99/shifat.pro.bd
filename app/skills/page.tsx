@@ -46,7 +46,7 @@ export default function SkillsPage() {
       >
         <div
           ref={colRef}
-          className="flex w-full max-w-[540px] flex-col gap-[25px]"
+          className="flex w-full max-w-[672px] flex-col gap-[25px]"
         >
           {/* Heading — same hero greeting treatment as the work page */}
           <motion.p
@@ -96,11 +96,24 @@ export default function SkillsPage() {
                       key={item.name}
                       className="flex h-6 items-center gap-[5px] rounded-full bg-neutral-100 px-2 dark:bg-neutral-900/80"
                     >
-                      <img
-                        src={`/skills/${item.icon}.svg`}
-                        alt=""
-                        draggable={false}
-                        className="size-[14px]"
+                      {/* Every stack icon is a monochrome silhouette, masked
+                          and filled with the pill's text color so it adapts to
+                          light/dark instead of carrying a fixed brand color
+                          that could clash with its neighbours or vanish on the
+                          dark pill. */}
+                      <span
+                        aria-hidden
+                        className="size-[14px] shrink-0 bg-neutral-800 dark:bg-neutral-100"
+                        style={{
+                          maskImage: `url(/skills/${item.icon}.svg)`,
+                          WebkitMaskImage: `url(/skills/${item.icon}.svg)`,
+                          maskRepeat: "no-repeat",
+                          WebkitMaskRepeat: "no-repeat",
+                          maskSize: "contain",
+                          WebkitMaskSize: "contain",
+                          maskPosition: "center",
+                          WebkitMaskPosition: "center",
+                        }}
                       />
                       <span className="font-mono text-[12px] leading-4 text-neutral-800 dark:text-neutral-100">
                         {item.name}
