@@ -15,6 +15,7 @@ import { ProjectsSection } from "@/components/ProjectsSection";
 import { ArchiveSection } from "@/components/ArchiveSection";
 import { ColophonSection } from "@/components/ColophonSection";
 import { AskAI } from "@/components/AskAI";
+import { FAQSection } from "@/components/FAQSection";
 import { SignatureGlyph } from "@/components/Signature";
 import { ProgressiveBlur } from "@/registry/magicui/progressive-blur";
 import { content } from "@/lib/content";
@@ -122,44 +123,92 @@ function HeroContent() {
           <TextScramble text={`Hi, I'm ${content.name}, ${content.headline}.`} active={welcomeDone} />
         </p>
 
-        <motion.p
+        <motion.div
           variants={FADE_UP}
           initial={reduce ? false : "hidden"}
           animate={welcomeDone ? "visible" : "hidden"}
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
-          className="mt-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
+          className="mt-6 space-y-6"
         >
-          I&apos;m the Chief Marketing Officer at{" "}
-          <a
-            href={content.projects[0].url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
-          >
-            {content.projects[0].name}
-          </a>
-          , an AI automation startup. I own brand, content, and demand generation, and build the acquisition engine that turns attention into customers.
-        </motion.p>
+          <div>
+            <h2
+              className="mb-2 text-[15px] font-medium text-foreground"
+              style={{ fontFamily: "var(--font-overused-grotesk)" }}
+            >
+              Who is Muhammad Shifat?
+            </h2>
+            <p className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              Muhammad Shifat (Shifat NPC) is the Chief Marketing Officer at{" "}
+              <a
+                href={content.projects[0].url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-neutral-700 transition-colors hover:text-foreground dark:text-neutral-300 dark:hover:text-white"
+              >
+                {content.projects[0].name}
+              </a>
+              , an AI automation agency based in Bangladesh. He is a digital marketing enthusiast and full-stack developer who works primarily in TypeScript, React, and Next.js, building AI agents and automation systems that drive business growth.
+            </p>
+          </div>
 
-        <motion.p
-          variants={FADE_UP}
-          initial={reduce ? false : "hidden"}
-          animate={welcomeDone ? "visible" : "hidden"}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.12 }}
-          className="mt-6 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
-        >
-          My edge is technical. I work mostly in TypeScript, React, and Next.js, with a focus on AI engineering and workflow automation, so I market what I understand deeply.
-        </motion.p>
+          <div>
+            <h2
+              className="mb-2 text-[15px] font-medium text-foreground"
+              style={{ fontFamily: "var(--font-overused-grotesk)" }}
+            >
+              What I Do
+            </h2>
+            <p className="mb-3 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              I help business owners and founders replace repetitive manual work with AI-driven systems. At NPC Automators, this means:
+            </p>
+            <ul className="space-y-1.5 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                Designing and deploying custom AI agents
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                Building workflow automation pipelines
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                Integrating AI tools into existing business systems
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                Developing internal dashboards for operational visibility
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                Leading marketing strategy and growth for the agency
+              </li>
+            </ul>
+          </div>
 
-        <motion.p
-          variants={FADE_UP}
-          initial={reduce ? false : "hidden"}
-          animate={welcomeDone ? "visible" : "hidden"}
-          transition={{ duration: 0.45, ease: "easeOut", delay: 0.19 }}
-          className="mt-4 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
-        >
-          Outside of work, I love contributing to open source.
-        </motion.p>
+          <div>
+            <h2
+              className="mb-2 text-[15px] font-medium text-foreground"
+              style={{ fontFamily: "var(--font-overused-grotesk)" }}
+            >
+              Background
+            </h2>
+            <p className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              I started as a full-stack developer working in the React and Next.js ecosystem before moving into AI automation, where I now focus on turning repetitive business processes into &quot;invisible employees&quot; — automated systems that run without manual oversight.
+            </p>
+          </div>
+
+          <div>
+            <h2
+              className="mb-2 text-[15px] font-medium text-foreground"
+              style={{ fontFamily: "var(--font-overused-grotesk)" }}
+            >
+              Who I Work With
+            </h2>
+            <p className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
+              NPC Automators works with business owners, founders, and SMEs who want to cut operational overhead through automation rather than hiring more staff.
+            </p>
+          </div>
+        </motion.div>
 
         <div ref={pillRowRef} className="relative mt-8">
         <motion.div
@@ -392,6 +441,16 @@ function HeroContent() {
           className="mt-14 w-full"
         >
           <AskAI />
+        </motion.div>
+
+        <motion.div
+          variants={FADE_UP}
+          initial={reduce ? false : "hidden"}
+          animate={welcomeDone ? "visible" : "hidden"}
+          transition={{ duration: 0.45, ease: "easeOut", delay: 0.58 }}
+          className="mt-14 w-full"
+        >
+          <FAQSection />
         </motion.div>
 
         <motion.div

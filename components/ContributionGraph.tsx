@@ -164,8 +164,36 @@ export function ContributionGraph() {
   }, [data]);
 
   if (loading) {
-    // keep the same height while the API call is in-flight
-    return <div className="h-[137px] w-full" />;
+    // animated skeleton that mimics the real graph layout
+    return (
+      <div className="w-full animate-pulse select-none">
+        {/* month labels skeleton */}
+        <div className="mb-[10px] h-[15px]" style={{ width: WEEKS * PITCH - GAP }}>
+          {[0, 8, 17, 26, 35, 44].map((w) => (
+            <div
+              key={w}
+              className="absolute rounded bg-neutral-200 dark:bg-neutral-800"
+              style={{ left: w * PITCH, width: 24, height: 10 }}
+            />
+          ))}
+        </div>
+        {/* grid skeleton */}
+        <div className="flex flex-col gap-[3px]">
+          {[0, 1, 2, 3, 4, 5, 6].map((day) => (
+            <div key={day} className="flex gap-[3px]">
+              {Array.from({ length: WEEKS }).map((_, w) => (
+                <div
+                  key={w}
+                  className="shrink-0 rounded-[2px] bg-neutral-200 dark:bg-neutral-800"
+                  style={{ width: CELL, height: CELL }}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+        <p className="mt-[9px] h-[14px] w-48 rounded bg-neutral-200 dark:bg-neutral-800" />
+      </div>
+    );
   }
 
   const weeks = data?.weeks;
