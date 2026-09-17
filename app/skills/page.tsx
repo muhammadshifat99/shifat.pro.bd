@@ -48,8 +48,10 @@ export default function SkillsPage() {
           ref={colRef}
           className="flex w-full max-w-[672px] flex-col gap-[25px]"
         >
-          {/* Heading — same hero greeting treatment as the work page */}
-          <motion.p
+          {/* Heading — same hero greeting treatment as the work page. An h1,
+              not a p: this page's subject, with nothing above it. No
+              aria-label because the subtitle span sits inside this element. */}
+          <motion.h1
             className="text-[24px] font-medium leading-none text-foreground"
             style={{ fontFamily: "var(--font-overused-grotesk)" }}
             initial={reduce ? false : { opacity: 0, y: 14, filter: "blur(6px)" }}
@@ -66,7 +68,7 @@ export default function SkillsPage() {
             >
               Which I use? See below
             </motion.span>
-          </motion.p>
+          </motion.h1>
 
           {/* Stack list — numbered rows with icon pills */}
           <motion.div

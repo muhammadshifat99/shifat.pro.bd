@@ -70,8 +70,11 @@ export default function WorkPage() {
 >
         <div className="flex w-full max-w-[672px] flex-col gap-[25px]">
         {/* Heading — hero greeting treatment, bumped a size; fades up + unblurs
-            on mount, so it plays when arriving via the dock */}
-        <motion.p
+            on mount, so it plays when arriving via the dock. An h1, not a p:
+            this is the page's subject and there is no other heading above it.
+            No aria-label here (unlike the home hero) because the subtitle span
+            below lives inside this same element and a label would override it. */}
+        <motion.h1
           className="text-[24px] font-medium leading-none text-foreground"
           style={{ fontFamily: "var(--font-overused-grotesk)" }}
           initial={reduce ? false : { opacity: 0, y: 14, filter: "blur(6px)" }}
@@ -88,7 +91,7 @@ export default function WorkPage() {
           >
             Where I&apos;ve worked &amp; what I&apos;ve built
           </motion.span>
-        </motion.p>
+        </motion.h1>
 
         {content.experience.map((job) => {
           const Icon = ENTRY_ICONS[job.icon];

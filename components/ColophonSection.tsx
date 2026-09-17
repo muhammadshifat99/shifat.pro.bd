@@ -67,7 +67,11 @@ const SOCIAL_GLYPHS: Record<string, SocialGlyph> = {
 };
 
 const STACK = ["next@16.3.1", "react@19.2.8", "tailwindcss@4"];
-const LIBRARIES = ["motion@13.1.0", "three@0.185.1", "lucide-react@0.577.0"];
+// three@0.185.1 was listed here but the package was never imported anywhere —
+// the 31MB dependency has been dropped, so the credit goes with it. Swap in
+// another library that actually ships in this build if the column should stay
+// at three entries (next-themes, react-apple-emojis and radix-slot all qualify).
+const LIBRARIES = ["motion@13.1.0", "lucide-react@0.577.0"];
 
 function Term({ children }: { children: React.ReactNode }) {
   return (

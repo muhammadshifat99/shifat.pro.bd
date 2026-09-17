@@ -13,6 +13,17 @@ export interface TextScrambleProps {
   className?: string;
   style?: CSSProperties;
   active?: boolean;
+  /**
+   * Drop the visually-hidden duplicate copy. TextScramble normally renders the
+   * text twice — once in `sr-only` so assistive tech gets a stable string while
+   * the visible copy churns through random glyphs, once `aria-hidden` for the
+   * animation. That makes the element's textContent read the sentence twice
+   * over, which is harmless in a paragraph but not inside a heading, where an
+   * extractor takes the doubled string as the page's subject. Set this when an
+   * ancestor already supplies `aria-label` — then the visible copy is the only
+   * text in the DOM and the accessible name comes from the label.
+   */
+  singleCopy?: boolean;
 }
 
 export function TextScramble({
@@ -22,6 +33,7 @@ export function TextScramble({
   className,
   style,
   active = true,
+  singleCopy = false,
 }: TextScrambleProps) {
   const reduce = useReducedMotion() ?? false;
   const [display, setDisplay] = useState(text);
@@ -70,7 +82,7 @@ export function TextScramble({
       className={cn("whitespace-pre-wrap break-words", className)}
       style={style}
     >
-      <span className="sr-only">{text}</span>
+      {!singleCopy && <span className="sr-only">{text}</span>}
       <span aria-hidden="true">{reduce ? text : display}</span>
     </span>
   );

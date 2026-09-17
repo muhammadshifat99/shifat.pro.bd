@@ -33,6 +33,21 @@ const FADE_UP = {
   visible: { opacity: 1, y: 0, filter: "blur(0px)" },
 };
 
+// Hero copy settles without ever touching opacity. The welcome loader is an
+// opaque `fixed inset-0` overlay, so the `hidden` pose is never actually seen —
+// and browsers exclude opacity:0 content from LCP, which would hold the hero's
+// largest paint until the intro finished (~1.6s). Blur/offset still read as the
+// same rise-and-sharpen reveal once the loader fades off it.
+const HERO_REVEAL = {
+  hidden: { y: 14, filter: "blur(6px)" },
+  visible: { y: 0, filter: "blur(0px)" },
+};
+
+// Defined once because it serves two roles on the h1: the visible scramble text
+// and the heading's accessible name. Passing it twice by hand would let the two
+// drift apart.
+const HERO_HEADLINE = `Hi, I'm ${content.name}, ${content.headline}.`;
+
 function HeroContent() {
   const welcomeDone = useWelcomeDone();
   const [pillHovered, setPillHovered] = useState<"x" | "gh" | "li" | null>(null);
@@ -104,6 +119,10 @@ function HeroContent() {
     >
       <motion.div className="flex flex-1 flex-col items-center justify-start px-6 pt-16" style={{ paddingBottom: pb }}>
         <div className="flex w-full max-w-[672px] flex-col items-start text-left">
+        {/* Painted from first render even though the welcome loader covers it:
+            the loader flies its own copy of this wordmark down to exactly this
+            rect, so revealing an already-drawn signature is pixel-identical —
+            and it keeps the hero out of the loader's LCP shadow. */}
         <motion.svg
           viewBox="0 0 1920 1080"
           id="hero-signature"
@@ -112,19 +131,27 @@ function HeroContent() {
           xmlns="http://www.w3.org/2000/svg"
           aria-label={`${content.name} wordmark`}
           style={{ x: sigSpringX, y: sigSpringY, rotate: sigSpringR }}
-          initial={reduce ? false : { opacity: 0 }}
-          animate={welcomeDone ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0 }}
         >
             <SignatureGlyph />
         </motion.svg>
 
-        <p className="text-[22px] font-medium leading-none text-foreground" style={{ fontFamily: "var(--font-overused-grotesk)" }}>
-          <TextScramble text={`Hi, I'm ${content.name}, ${content.headline}.`} active={welcomeDone} />
-        </p>
+        {/* The page's only h1, and the one sentence that names the entity —
+            heading level is independent of the 22px visual size here. Without
+            it every heading on the page started at h2, which left screen
+            readers and LLM extractors without a stated primary subject.
+            aria-label carries the accessible name and singleCopy keeps the
+            text out of the DOM twice, so the heading's textContent is the
+            sentence exactly once rather than doubled. */}
+        <h1
+          aria-label={HERO_HEADLINE}
+          className="text-[22px] font-medium leading-none text-foreground"
+          style={{ fontFamily: "var(--font-overused-grotesk)" }}
+        >
+          <TextScramble text={HERO_HEADLINE} active={welcomeDone} singleCopy />
+        </h1>
 
         <motion.div
-          variants={FADE_UP}
+          variants={HERO_REVEAL}
           initial={reduce ? false : "hidden"}
           animate={welcomeDone ? "visible" : "hidden"}
           transition={{ duration: 0.45, ease: "easeOut", delay: 0.05 }}
@@ -147,7 +174,10 @@ function HeroContent() {
               >
                 {content.projects[0].name}
               </a>
-              , an AI automation agency based in Bangladesh. He is a digital marketing enthusiast and full-stack developer who works primarily in TypeScript, React, and Next.js, building AI agents and automation systems that drive business growth.
+              , an AI automation agency based in Bangladesh. A digital marketing
+              enthusiast and full-stack developer, he works primarily in
+              TypeScript, React, and Next.js — building AI agents and automation
+              systems, and running the marketing that drives business growth.
             </p>
           </div>
 
@@ -180,7 +210,8 @@ function HeroContent() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-neutral-400 dark:bg-neutral-500" />
-                Leading marketing strategy and growth for the agency
+                Running the digital marketing — brand, content, and demand
+                generation
               </li>
             </ul>
           </div>
@@ -193,7 +224,12 @@ function HeroContent() {
               Background
             </h2>
             <p className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
-              I started as a full-stack developer working in the React and Next.js ecosystem before moving into AI automation, where I now focus on turning repetitive business processes into &quot;invisible employees&quot; — automated systems that run without manual oversight.
+              I started as a full-stack developer in the React and Next.js
+              ecosystem, then moved into AI automation — and into digital
+              marketing, which turned out to be the same job from the other end.
+              Now I split my time between turning repetitive business processes
+              into &quot;invisible employees&quot; and getting those systems in
+              front of the people who need them.
             </p>
           </div>
 

@@ -14,7 +14,8 @@ export default function PlaygroundPage() {
   return (
     <main className="flex flex-1 flex-col items-center bg-background text-foreground">
       <div className="flex w-full max-w-[672px] flex-col items-start px-6 pt-16">
-        <motion.p
+        {/* An h1, not a p: the page's subject, with no heading above it. */}
+        <motion.h1
           className="text-[24px] font-medium leading-none text-foreground"
           style={{ fontFamily: "var(--font-overused-grotesk)" }}
           initial={reduce ? false : { opacity: 0, y: 14, filter: "blur(6px)" }}
@@ -31,7 +32,7 @@ export default function PlaygroundPage() {
           >
             Experiments &amp; playground projects
           </motion.span>
-        </motion.p>
+        </motion.h1>
       </div>
 
       {/* bento grid — empty cards, dashed neutral border, filled later.

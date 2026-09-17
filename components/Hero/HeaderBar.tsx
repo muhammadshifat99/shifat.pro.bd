@@ -106,12 +106,14 @@ export function HeaderBar() {
               >
                 <div className="h-[203px] w-[200px] shrink-0 overflow-hidden rounded-2xl border-8 border-white shadow-[0px_53px_79px_rgba(0,0,0,0.1)] dark:border-neutral-800">
                   <img
-                    src="/avatar.png"
+                    src="/avatar.webp"
                     alt={content.name}
                     width={200}
                     height={203}
                     className="h-full w-full rounded-xl object-cover"
                     draggable={false}
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </motion.div>

@@ -16,11 +16,11 @@ export function XHoverCard() {
         <div className="size-[64px] shrink-0 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/avatar.png"
+            src="/avatar.webp"
             alt={content.name}
             width={64}
             height={64}
-            draggable={false}
+            draggable={false} loading="lazy" decoding="async"
             className="size-full scale-[1.45] object-cover object-[58%_22%]"
           />
         </div>
