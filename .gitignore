@@ -48,3 +48,14 @@ next-env.d.ts
 AGENTS.md
 CLAUDE.md
 /docs/
+
+# working documents — drafts, exports and reports that inform the site but
+# are not part of it. Ignored rather than merely left unstaged so a
+# `git add -A` can't publish them.
+NPC_AUTOMATORS_Agency_Overview_v1.pdf
+shifat-seo-package.md
+seo-aeo-geo-toolkit-template.md
+seo-aeo-geo-toolkit.html
+# PageSpeed downloads carry a volatile hash in the filename, so match the
+# prefix rather than one exact name
+pagespeed.web.dev_analysis_*.png

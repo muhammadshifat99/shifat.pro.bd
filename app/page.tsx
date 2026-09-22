@@ -186,7 +186,7 @@ function HeroContent() {
               className="mb-2 text-[15px] font-medium text-foreground"
               style={{ fontFamily: "var(--font-overused-grotesk)" }}
             >
-              What I Do
+              What I Do — AI Automation &amp; Workflow Systems
             </h2>
             <p className="mb-3 text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
               I help business owners and founders replace repetitive manual work with AI-driven systems. At NPC Automators, this means:
@@ -238,7 +238,7 @@ function HeroContent() {
               className="mb-2 text-[15px] font-medium text-foreground"
               style={{ fontFamily: "var(--font-overused-grotesk)" }}
             >
-              Who I Work With
+              Who I Work With — SMEs, Founders &amp; Business Owners
             </h2>
             <p className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400">
               NPC Automators works with business owners, founders, and SMEs who want to cut operational overhead through automation rather than hiring more staff.
@@ -511,10 +511,79 @@ function HeroContent() {
   );
 }
 
+// Stamped at build time. This is a static export, so it moves whenever the site
+// is rebuilt and redeployed — which is exactly the freshness signal a
+// ProfilePage is meant to carry.
+const BUILD_DATE = new Date().toISOString().split("T")[0];
+
 export default function Home() {
   return (
-    <WelcomeGate>
-      <HeroContent />
-    </WelcomeGate>
+    <>
+      <WelcomeGate>
+        <HeroContent />
+      </WelcomeGate>
+
+      {/* Page-scoped structured data. These live here, not in app/layout.tsx,
+          because they describe *this page*: ProfilePage is "this page is about
+          that person", and the FAQPage answers appear only on this route.
+
+          Shipping them site-wide put FAQPage markup on /work, /skills and
+          /playground, where no FAQ is visible — a schema/content mismatch, not
+          just a wasted tag. Person, Organization and WebSite stay in the
+          layout, because they describe entities that exist independently of
+          any one page. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfilePage",
+            // Named so the node is referenceable rather than an anonymous
+            // assertion; without it this is a new entity on every page that
+            // carries it.
+            "@id": "https://shifat.pro.bd/#webpage",
+            url: "https://shifat.pro.bd",
+            dateModified: BUILD_DATE,
+            mainEntity: { "@id": "https://shifat.pro.bd/#person" },
+            isPartOf: { "@id": "https://shifat.pro.bd/#website" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "Who is Muhammad Shifat?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Shifat NPC is the online handle of Muhammad Shifat, the Chief Marketing Officer at NPC Automators, an AI automation agency. He works primarily in TypeScript, React, and Next.js, focusing on AI agents and workflow automation.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What does Muhammad Shifat do?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Muhammad Shifat (Shifat NPC) builds AI-powered automation systems, custom dashboards, and full-stack web applications, and leads marketing at NPC Automators.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is NPC Automators?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "NPC Automators is an AI automation agency that builds AI agents, workflow automation, AI integrations, custom automation systems, and internal dashboards for business owners, founders, and SMEs.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+    </>
   );
 }

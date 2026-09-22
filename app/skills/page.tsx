@@ -66,9 +66,25 @@ export default function SkillsPage() {
               animate="visible"
               transition={{ duration: 0.45, ease: "easeOut", delay: 0.5 }}
             >
-              Which I use? See below
+              The tools behind my AI automation work
             </motion.span>
           </motion.h1>
+
+          {/* The page previously held no prose at all — only group labels and
+              tag pills, which left a search engine nothing to read as content.
+              The intro also names the domains the list below is evidence for. */}
+          <motion.p
+            variants={FADE_UP}
+            initial={reduce ? false : "hidden"}
+            animate="visible"
+            transition={{ duration: 0.45, ease: "easeOut", delay: 0.55 }}
+            className="text-[15px] leading-relaxed text-neutral-500 dark:text-neutral-400"
+          >
+            I build AI automation systems, full-stack web applications, and the
+            dashboards that run them. The stack below is what I reach for in
+            practice — TypeScript and React on the front end, Node.js and Python
+            behind it, and the AI tooling that connects the two.
+          </motion.p>
 
           {/* Stack list — numbered rows with icon pills */}
           <motion.div

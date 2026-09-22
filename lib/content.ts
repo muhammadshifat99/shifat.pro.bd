@@ -31,7 +31,10 @@ export const content = {
     "NPCAutomators",
     "barishalreadersforum",
   ],
-  headline: "Digital Marketing & Tech Enthusiast",
+  // Drives the homepage h1 (see HERO_HEADLINE in app/page.tsx). Leads with the
+  // primary search term — "AI automation" — and mirrors the <title>, so the two
+  // strongest on-page signals agree instead of pointing at different topics.
+  headline: "AI Automation & Digital Marketing Expert",
   headlineFull: "Full-Stack Developer & Digital Marketing Enthusiast",
   subtext: "I build for the web, automate with AI, and market what I make.",
   email: "muhammadshifat@yahoo.com",
