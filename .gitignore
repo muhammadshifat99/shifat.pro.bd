@@ -59,3 +59,5 @@ seo-aeo-geo-toolkit.html
 # PageSpeed downloads carry a volatile hash in the filename, so match the
 # prefix rather than one exact name
 pagespeed.web.dev_analysis_*.png
+# screenshots saved for reference while working on SEO
+google search preview*.png
