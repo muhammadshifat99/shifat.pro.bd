@@ -129,7 +129,15 @@ export default function RootLayout({
             WebSite, Person and Organization live in the root layout because
             they describe entities that exist independently of any one page.
             ProfilePage and FAQPage describe one specific page, so they live in
-            app/page.tsx instead — see the note there. */}
+            app/page.tsx instead — see the note there.
+
+            `alternateName` feeds Google's site-name feature, which reads it as
+            a preference-ordered list — the first entry it has confidence in
+            wins. "Shifat NPC" leads the alternates because that is what the
+            brand is searched by; the bare domain is the documented last resort
+            and has to stay lowercase to be read as a preference rather than an
+            arbitrary string. The site-name docs say to nest these in the
+            existing WebSite node rather than emit a second block. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -138,6 +146,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "@id": "https://shifat.pro.bd/#website",
               name: "Muhammad Shifat",
+              alternateName: ["Shifat NPC", "Shifat", "shifat.pro.bd"],
               url: "https://shifat.pro.bd",
               inLanguage: "en",
               publisher: { "@id": "https://shifat.pro.bd/#person" },
